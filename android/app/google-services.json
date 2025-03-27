@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "687729348692",
+    "project_id": "bookred-47eea",
+    "storage_bucket": "bookred-47eea.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:687729348692:android:7ed8d0b7f68d6aae4addc1",
+        "android_client_info": {
+          "package_name": "com.example.bookred"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAm2KnlLIWqkWik0_b_Nx2bxjHvtTkVV-Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

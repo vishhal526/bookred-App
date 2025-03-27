@@ -1,0 +1,9 @@
+flutter_native_splash:
+  color: "#ffffff" # Background color (white)
+  image: assets/images/Splash_Icon.png # Path to your logo
+  android: true
+  ios: true
+  web: true
+  android_gravity: center # Align logo
+  ios_content_mode: scaleAspectFill
+  web_image_mode: center
