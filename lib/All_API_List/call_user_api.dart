@@ -59,8 +59,8 @@ class User_Service {
 
   Future<List<Map<String, dynamic>>> GetBookmarkedBooks(String UserID) async {
     try {
-      final response = await http
-          .get(Uri.parse("${ApiConstants.userUrl}bookmark/$UserID"));
+      final response =
+          await http.get(Uri.parse("${ApiConstants.userUrl}bookmark/$UserID"));
 
       if (response.statusCode == 200) {
         print("\nGot Bookmarked books");
@@ -76,10 +76,25 @@ class User_Service {
     }
   }
 
+  Future<Map<String,dynamic>> GetCurrentlyReadingBook() async {
+    String? UserID = await api.getUserIdFromPrefs();
+
+    var response = await http
+        .get(Uri.parse(ApiConstants.userUrl + "currentlyReading/$UserID"));
+
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+      print("Data from the Backend for Currently Reading book = ${data}");
+      return data;
+    } else {
+      throw Exception("Error Occured while Getting Currently Reading book");
+    }
+  }
+
   Future<List<Map<String, dynamic>>> GetReadBooks(String UserID) async {
     try {
-      final response = await http
-          .get(Uri.parse("${ApiConstants.userUrl}readbook/$UserID"));
+      final response =
+          await http.get(Uri.parse("${ApiConstants.userUrl}readbook/$UserID"));
 
       if (response.statusCode == 200) {
         return List<Map<String, dynamic>>.from(jsonDecode(response.body));

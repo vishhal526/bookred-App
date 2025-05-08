@@ -66,11 +66,15 @@ class _BookDetailTabState extends State<BookDetailTab> {
                         // spacing between names
                         child: Row(
                           children: [
-                            Text(
-                              pub["name"] ?? '',
-                              style: const TextStyle(
-                                fontFamily: "Poppins",
-                                fontSize: 15,
+                            Flexible(
+                              child: Text(
+                                pub["name"] ?? '',
+                                maxLines: 2,
+                                overflow: TextOverflow.visible,
+                                style: const TextStyle(
+                                  fontFamily: "Poppins",
+                                  fontSize: 15,
+                                ),
                               ),
                             ),
                             SizedBox(
