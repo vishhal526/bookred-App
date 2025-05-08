@@ -138,7 +138,11 @@ class _BookInfoPageState extends State<BookInfoPage>
       appBar: AppBar(
         actions: [
           Padding(
-            padding: EdgeInsets.only(right: 19.0,),
+            padding: EdgeInsets.only(
+              right: 19.0,
+            ),
+
+            // Bookmark Icon
             child: GestureDetector(
               onTap: () {
                 updatebookmark(isbookmark);
@@ -261,6 +265,7 @@ class _BookInfoPageState extends State<BookInfoPage>
     final dislikes = bookData!['dislike'] ?? 0;
     final genre =
         (bookData!['genre'] as List?)?.map((g) => g.toString()).toList() ?? [];
+    final rating = bookData!["rating"]["average"];
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 19),
@@ -338,7 +343,7 @@ class _BookInfoPageState extends State<BookInfoPage>
                 //Book Name
                 Text(
                   widget.name.isNotEmpty ? widget.name : 'Unknown',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     fontFamily: "Poppins",
@@ -398,6 +403,43 @@ class _BookInfoPageState extends State<BookInfoPage>
                   isActive: isDisliked,
                   onTap: toggleDislike,
                 ),
+
+                SizedBox(
+                  height: 10,
+                ),
+
+                //Book Rating
+                GestureDetector(
+                  onTap: (){},
+                  child: Row(
+                    children: [
+                      // Generate the stars
+                      ...List.generate(5, (index) {
+                        if (index < rating.floor()) {
+                          return Icon(Icons.star, color: Colors.amber, size: 25);
+                        } else if (index < rating && rating - index >= 0.5) {
+                          return Icon(Icons.star_half,
+                              color: Colors.amber, size: 25);
+                        } else {
+                          return Icon(Icons.star_border,
+                              color: Colors.grey, size: 25);
+                        }
+                      }),
+
+                      // Display the average rating at the end
+                      SizedBox(width: 8),
+                      // Space between stars and the rating text
+                      Text(
+                        rating.toStringAsFixed(1),
+                        // Display rating with 1 decimal place
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontFamily: "Poppins",
+                        ),
+                      ),
+                    ],
+                  ),
+                )
               ],
             ),
           ),

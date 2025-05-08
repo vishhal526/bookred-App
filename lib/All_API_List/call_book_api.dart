@@ -60,9 +60,9 @@ class BookService {
       );
 
       if (response.statusCode == 200) {
-        print("✅ Book fetched successfully.");
-        return json
-            .decode(response.body); // Should include book info + user status
+        var data = json.decode(response.body);
+        print("✅ Book fetched successfully that is = ${data}");
+        return data;
       } else {
         print("❌ Failed with status code: ${response.statusCode}");
         throw Exception('Failed to load book');
@@ -109,14 +109,11 @@ class BookService {
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode(requestBody));
 
-
-
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
       bool isBookmarked = data["isBookmarked"];
       return isBookmarked;
     } else {
-
       throw Exception(
           "Error occured in bookmarking the book with status code = ${response.statusCode}");
     }
@@ -125,24 +122,18 @@ class BookService {
   Future<bool> AddToReadList(String bookID, bool isRead) async {
     String? userID = await api.getUserIdFromPrefs();
 
-    Map<String, dynamic> requestBody = {
-      "userId": userID,
-      "isRead": isRead
-    };
+    Map<String, dynamic> requestBody = {"userId": userID, "isRead": isRead};
 
     var response = await http.post(
         Uri.parse(ApiConstants.bookUrl + "readbook/$bookID"),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode(requestBody));
 
-
-
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
       bool isread = data["isRead"];
       return isread;
     } else {
-
       throw Exception(
           "Error occured in adding the book to read List with status code = ${response.statusCode}");
     }

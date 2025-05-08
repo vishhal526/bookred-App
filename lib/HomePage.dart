@@ -123,7 +123,7 @@ class _HomePageState extends State<HomePage> {
                                 "Currently You are not Reading any book",
                                 maxLines: 3,
                                 style: TextStyle(
-                                    fontSize: 25, fontFamily: "Poppins"),
+                                    fontSize: 20, fontFamily: "Poppins"),
                               ))
                             ],
                           ));

@@ -68,7 +68,7 @@ class _BookDetailTabState extends State<BookDetailTab> {
                           children: [
                             Flexible(
                               child: Text(
-                                pub["name"] ?? '',
+                                pub["name"],
                                 maxLines: 2,
                                 overflow: TextOverflow.visible,
                                 style: const TextStyle(
